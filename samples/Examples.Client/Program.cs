@@ -1,4 +1,6 @@
 ﻿using Examples.Grains;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.DataStructures;
@@ -12,73 +14,34 @@ namespace Examples.Client
 {
     class Program
     {
-        static async Task Main()
-        {
-            using var client = await StartClientWithRetries();
-            while (true)
+        
+            static async Task Main(string[] args)
             {
                 try
                 {
-                    var array = client.GetGrain<IArrayGrain<MyData>>("test");
+                    var hostBuilder = Host.CreateDefaultBuilder(args);
 
-                    await array.AddAsync(new MyData("A"));
+                    await hostBuilder.AddOrleansClusterClientAsync();
 
-                    await array.AddAsync(new MyData("B"));
-
-
-                    var count = await array.CountAsync();
-
-                    for (int i = 0; i < count; i++)
+                    hostBuilder.ConfigureServices(services =>
                     {
-                        Console.WriteLine($"array[{i}] = \"{(await array.GetAsync(i)).Value}\"");
-                    }
-                    Console.ReadLine();
+                        services.AddHostedService<ClusterClientHostedService>();
+
+                        services.AddHostedService<ArrayExamples>();
+                    });
+
+                    await hostBuilder.RunConsoleAsync();
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine($"\n\nException:\n{ex}");
+                }
+
+                if (!Debugger.IsAttached)
+                {
+                    Console.WriteLine("\n\nPress any key to exit.");
+                    Console.ReadKey(true);
                 }
             }
         }
-
-        private static async Task<IClusterClient> StartClientWithRetries(int initializeAttemptsBeforeFailing = 5)
-        {
-            int attempt = 0;
-            IClusterClient client;
-            while (true)
-            {
-                try
-                {
-                    var builder = new ClientBuilder()
-                        .UseLocalhostClustering()
-                        .ConfigureApplicationParts(parts =>
-                        {
-
-                            parts.AddApplicationPart(typeof(ArrayGrain<>).Assembly).WithReferences();
-                            parts.AddApplicationPart(typeof(MyData).Assembly).WithReferences();
-
-                        })
-                        .ConfigureLogging(logging => logging.AddConsole());
-                    client = builder.Build();
-                    await client.Connect();
-                    Console.WriteLine("Client successfully connect to silo host");
-                    break;
-                }
-                catch (Exception)
-                {
-                    attempt++;
-                    Console.WriteLine(
-                        $"Attempt {attempt} of {initializeAttemptsBeforeFailing} failed to initialize the Orleans client.");
-                    if (attempt > initializeAttemptsBeforeFailing)
-                    {
-                        throw;
-                    }
-
-                    await Task.Delay(TimeSpan.FromSeconds(5));
-                }
-            }
-
-            return client;
-        }
-    }
 }

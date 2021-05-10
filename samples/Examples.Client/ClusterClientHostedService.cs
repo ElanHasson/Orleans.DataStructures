@@ -15,7 +15,9 @@ namespace Examples.Client
             this.client = client;
         }
 
+#pragma warning disable 1998
         public async Task StartAsync(CancellationToken cancellationToken)
+#pragma warning restore 1998
         {
             Console.WriteLine("Cluster client service started.");
         }

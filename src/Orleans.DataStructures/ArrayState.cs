@@ -2,6 +2,6 @@
 {
     public class ArrayState
     {
-        public int Length { get; set; }
+        public long Length { get; set; }
     }
 }

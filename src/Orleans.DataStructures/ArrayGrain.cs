@@ -8,7 +8,7 @@ namespace Orleans.DataStructures
         private readonly IPersistentState<ArrayState> arrayState;
         private readonly IGrainFactory grainFactory;
 
-        public ArrayGrain([PersistentState("arraystate")] IPersistentState<ArrayState> arrayState)
+        public ArrayGrain([PersistentState("arrayState")] IPersistentState<ArrayState> arrayState)
         {
             this.arrayState = arrayState;
          }

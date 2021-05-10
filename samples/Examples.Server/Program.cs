@@ -9,6 +9,7 @@ using Orleans.Hosting;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging.Console;
 
 namespace Examples.Server
 {
@@ -43,7 +44,8 @@ namespace Examples.Server
                 .ConfigureLogging(logging =>
                 {
                     logging.SetMinimumLevel(LogLevel.Information);
-                    logging.AddConsole(options => options.IncludeScopes = true);
+                    
+                    logging.AddConsole(options => options.FormatterName = ConsoleFormatterNames.Systemd);
                 }).Build();
         }
     }

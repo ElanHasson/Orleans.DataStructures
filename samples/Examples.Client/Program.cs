@@ -1,5 +1,4 @@
-﻿using Examples.Grains;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans;
@@ -26,7 +25,7 @@ namespace Examples.Client
                     {
                         services.AddHostedService<ClusterClientHostedService>();
 
-                        services.AddHostedService<ArrayExamples>();
+                        services.AddHostedService<DoublyLinkedListExamples>();
                     });
 
                     await hostBuilder.RunConsoleAsync();

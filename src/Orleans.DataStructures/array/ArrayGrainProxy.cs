@@ -1,8 +1,7 @@
-﻿using Orleans.CodeGeneration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace Orleans.DataStructures
+namespace Orleans.DataStructures.Array
 {
     public class ArrayGrainProxy<T>: IAsyncEnumerable<(long index, T item)>
     {

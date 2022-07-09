@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30309.148
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.DataStructures", "src\Orleans.DataStructures\Orleans.DataStructures.csproj", "{CA1BA33A-A591-4D46-9BDA-2CAED1BFAFB9}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples.Server", "samples\Examples.Server\Examples.Server.csproj", "{D758BE83-BA2D-4583-B358-E0A309719C79}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples.Client", "samples\Examples.Client\Examples.Client.csproj", "{110CDAB8-BE33-4293-BA4E-2AB53B0DBB9D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples.Grains", "samples\Examples.Grains\Examples.Grains.csproj", "{676B66B1-43E6-4C13-AA06-F0C373521C2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{110CDAB8-BE33-4293-BA4E-2AB53B0DBB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{110CDAB8-BE33-4293-BA4E-2AB53B0DBB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{110CDAB8-BE33-4293-BA4E-2AB53B0DBB9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{676B66B1-43E6-4C13-AA06-F0C373521C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{676B66B1-43E6-4C13-AA06-F0C373521C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{676B66B1-43E6-4C13-AA06-F0C373521C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{676B66B1-43E6-4C13-AA06-F0C373521C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,7 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D758BE83-BA2D-4583-B358-E0A309719C79} = {DE6B5284-DB2D-4F23-B924-4324AC0BCE36}
 		{110CDAB8-BE33-4293-BA4E-2AB53B0DBB9D} = {DE6B5284-DB2D-4F23-B924-4324AC0BCE36}
-		{676B66B1-43E6-4C13-AA06-F0C373521C2E} = {DE6B5284-DB2D-4F23-B924-4324AC0BCE36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7E5AF4C-0D09-40D4-88AD-353D046F6441}

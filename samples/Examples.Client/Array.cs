@@ -1,10 +1,9 @@
-﻿using Examples.Grains;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Orleans;
-using Orleans.DataStructures;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Orleans.DataStructures.Array;
 
 namespace Examples.Client
 {
@@ -34,7 +33,7 @@ namespace Examples.Client
         private async Task ExecuteAsync(CancellationToken cancellationToken)
         {
 
-            while (true && !cancellationToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 try
                 {

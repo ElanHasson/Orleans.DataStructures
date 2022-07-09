@@ -1,7 +1,7 @@
-﻿using Orleans.Runtime;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Orleans.Runtime;
 
-namespace Orleans.DataStructures
+namespace Orleans.DataStructures.Array
 {
     public class ArrayItemGrain<T>: Grain, IArrayItemGrain<T>
     {

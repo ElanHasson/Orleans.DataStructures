@@ -2,7 +2,10 @@
 
 A project to provide implementations of durable, distributed data structures that run on top of Microsoft Orleans.
 
+## Implemented
+* Doubly Linked List
 
+**[Below are Deprecated]**
 ## Array
 ### Capabilities
 * Add items to the array.

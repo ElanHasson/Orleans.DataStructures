@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Orleans.DataStructures
+namespace Orleans.DataStructures.Array
 {
     public interface IArrayItemGrain<T> : IGrainWithIntegerCompoundKey
     {

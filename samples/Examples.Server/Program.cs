@@ -1,15 +1,13 @@
-﻿using Examples.Grains;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
-using Orleans.DataStructures;
 using Orleans.Hosting;
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging.Console;
+using Orleans.DataStructures.Array;
+using Examples.Client;
 
 namespace Examples.Server
 {
@@ -27,15 +25,21 @@ namespace Examples.Server
                 {
                     siloBuilder
                         .UseLocalhostClustering()
+                        .UseTransactions()
                         .AddMemoryGrainStorageAsDefault()
                          .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
                         .ConfigureApplicationParts(parts =>
                         {
                             parts.AddApplicationPart(typeof(ArrayGrain<>).Assembly).WithReferences();
-                            parts.AddApplicationPart(typeof(ArrayItemGrain<>).Assembly).WithReferences();
                             parts.AddApplicationPart(typeof(MyData).Assembly).WithReferences();
 
                         });
+                    siloBuilder.AddMemoryGrainStorage("ringStorage");
+                    siloBuilder.AddMemoryGrainStorage("nodeStorage");
+                    siloBuilder.AddMemoryGrainStorage("PubSubStore");
+                    siloBuilder.AddMemoryGrainStorage("dllStorage");
+                    siloBuilder.AddSimpleMessageStreamProvider("nodeResponse",
+                        configurator => { configurator.FireAndForgetDelivery = true; });
                 })
                 .ConfigureServices(serviceCollection =>
                 {
@@ -44,7 +48,7 @@ namespace Examples.Server
                 .ConfigureLogging(logging =>
                 {
                     logging.SetMinimumLevel(LogLevel.Information);
-                    
+
                     logging.AddConsole(options => options.FormatterName = ConsoleFormatterNames.Systemd);
                 }).Build();
         }

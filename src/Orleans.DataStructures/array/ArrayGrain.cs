@@ -1,12 +1,11 @@
-﻿using Orleans.Runtime;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Orleans.Runtime;
 
-namespace Orleans.DataStructures
+namespace Orleans.DataStructures.Array
 {
     public class ArrayGrain<T> : Grain, IArrayGrain<T>
     {
         private readonly IPersistentState<ArrayState> arrayState;
-        private readonly IGrainFactory grainFactory;
 
         public ArrayGrain([PersistentState("arrayState")] IPersistentState<ArrayState> arrayState)
         {

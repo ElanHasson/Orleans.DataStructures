@@ -1,4 +1,4 @@
-﻿namespace Orleans.DataStructures
+﻿namespace Orleans.DataStructures.Array
 {
     public static class ArrayGrainExtensions
     {

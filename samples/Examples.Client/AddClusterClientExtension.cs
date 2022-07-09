@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Orleans;
-using Orleans.DataStructures;
 using System;
 using System.Threading.Tasks;
+using Orleans.DataStructures.Array;
 
 namespace Examples.Client
 {
@@ -70,6 +70,8 @@ namespace Examples.Client
                 builder.ConfigureApplicationParts(parts =>
                 {
                     parts.AddApplicationPart(typeof(IArrayGrain<>).Assembly).WithReferences();
+                    parts.AddApplicationPart(typeof(MyData).Assembly).WithReferences();
+
                 });
 
                 client = builder.Build();

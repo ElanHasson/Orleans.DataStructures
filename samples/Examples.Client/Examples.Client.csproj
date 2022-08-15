@@ -15,7 +15,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="Microsoft.Orleans.Transactions" Version="3.6.4" />
+	  <PackageReference Include="Microsoft.Orleans.Transactions" Version="3.6.5" />
 
   </ItemGroup>
   <ItemGroup>
